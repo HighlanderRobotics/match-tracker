@@ -8,7 +8,7 @@
   export let data: PageServerData;
 
   onMount(() => {
-    setInterval(invalidateAll, 60000);
+    setInterval(invalidateAll, 120000);
   })
 </script>
 
