@@ -47,6 +47,10 @@
 </div>
 
 <style>
+  .progress-container {
+    padding-bottom: 80px;
+  }
+
   .content {
     height: 100vh;
     display: flex;
@@ -94,5 +98,9 @@
     align-items: center;
     gap: 15px;
     padding: 15px;
+  }
+
+  .data-age p {
+    color: var(--body);
   }
 </style>
