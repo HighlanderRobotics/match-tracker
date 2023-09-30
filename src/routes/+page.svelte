@@ -12,6 +12,10 @@
   })
 </script>
 
+<svelte:head>
+  <title>On {localizedMatchKey(data.nextMatch.match.key)} | Match Tracker</title>
+</svelte:head>
+
 <div class="content">
   <div class="progress-container">
     <div class="overline">
