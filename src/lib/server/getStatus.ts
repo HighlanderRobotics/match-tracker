@@ -1,8 +1,9 @@
+import { serverAuthority, tournamentKey } from "$lib/constants";
 import { matchKey, type GameMatch } from "$lib/types/match";
 
 async function getSchedule(): Promise<GameMatch[]> {
-    const matchesResponse = await fetch('http://157.131.22.135:25565/API/manager/getMatches?' + new URLSearchParams({
-        tournamentKey: '2023cc',
+    const matchesResponse = await fetch(`http://${serverAuthority}/API/manager/getMatches?` + new URLSearchParams({
+        tournamentKey,
     }));
 
     const matchRows: { key: string, team: string, ordinalNumber: number }[] = await matchesResponse.json();

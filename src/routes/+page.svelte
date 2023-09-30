@@ -27,10 +27,14 @@
       <h1>{localizedMatchKey(data.nextTeamMatch.match.key)}</h1>
     </div>
     <div class="progress-bar">
-      <div class="shaded-region" style:width={`${((data.nextMatch.match.ordinalNumber - (data.previousTeamMatch?.match?.ordinalNumber || 1)) / ((data.nextTeamMatch?.match.ordinalNumber || 1) - (data.previousTeamMatch?.match?.ordinalNumber || 0))) * 100}%`} />
+      <div class="shaded-region" style:width={`${((data.nextMatch.match.ordinalNumber - (data.previousTeamMatch?.match?.ordinalNumber || 1)) / ((data.nextTeamMatch?.match.ordinalNumber) - (data.previousTeamMatch?.match?.ordinalNumber || 0))) * 100}%`} />
       <span class="next-match">
         <h1>{localizedMatchKey(data.nextMatch.match.key)}</h1>
       </span>
+      <div class="begin-queuing" style:left={`${((data.nextTeamMatch.match.ordinalNumber - (data.previousTeamMatch?.match?.ordinalNumber || 0) - 3) / ((data.nextTeamMatch?.match.ordinalNumber) - (data.previousTeamMatch?.match?.ordinalNumber || 0))) * 100}%`}>
+        <div class="indicator" />
+        <p>Begin queuing</p>
+      </div>
     </div>
   </div>
 </div>
@@ -47,6 +51,23 @@
 </div>
 
 <style>
+  .indicator {
+    height: 100%;
+    width: 2px;
+    background-color: var(--danger);
+  }
+
+  .begin-queuing {
+    position: absolute;
+    height: 100%;
+    transition: 0.5s ease;
+  }
+
+  .begin-queuing p {
+    color: var(--danger);
+    transform: translateX(-50%);
+  }
+
   .progress-container {
     padding-bottom: 80px;
   }
@@ -72,6 +93,7 @@
     background-color: var(--secondary-container);
     display: flex;
     flex-direction: row;
+    position: relative;
   }
 
   .next-match {
@@ -80,7 +102,7 @@
 
   .next-match h1 {
     width: max-content;
-    transform: translate(-50%, 100%);
+    transform: translate(-50%, calc(100% + 15px));
   }
 
   .shaded-region {

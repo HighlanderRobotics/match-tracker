@@ -1,3 +1,4 @@
+import { serverAuthority, tournamentKey } from '$lib/constants';
 import { getSchedule } from '$lib/server/getStatus';
 import { matchKey, type GameMatch } from '$lib/types/match';
 import type { PageServerLoad } from './$types';
@@ -5,8 +6,8 @@ import type { PageServerLoad } from './$types';
 export const load = (async () => {
     const matches = await getSchedule();
     
-    const isScoutedResponse = await fetch('http://157.131.22.135:25565/API/manager/isScouted?' + new URLSearchParams({
-        tournamentKey: '2023cc',
+    const isScoutedResponse = await fetch(`http://${serverAuthority}/API/manager/isScouted?` + new URLSearchParams({
+        tournamentKey,
     }));
 
     const isScouted: { key: string, name: string | null }[] = await isScoutedResponse.json();
